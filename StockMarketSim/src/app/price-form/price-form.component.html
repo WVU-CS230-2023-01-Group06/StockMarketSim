@@ -1,0 +1,18 @@
+<form class="w-25 text-center mx-auto">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Stock Symbol</label>
+    <input
+      type="text"
+      class="form-control"
+      #box
+      aria-describedby="emailHelp"
+      (keyup)="getSymbolInput(box.value)"
+      placeholder="ex. AAPL"
+    />
+    {{ symbol }}
+  </div>
+  <button type="button" (click)="onClick()" class="btn btn-primary">
+    Get Price
+  </button>
+</form>
+{{ priceLabel }}
