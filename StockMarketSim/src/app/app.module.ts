@@ -7,9 +7,11 @@ import { PriceFormComponent } from './price-form/price-form.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { TutorialPageComponent } from './tutorial-page/tutorial-page.component';
 
 @NgModule({
-  declarations: [AppComponent, PriceFormComponent, LogInComponent, CreateAccountComponent, UserPageComponent],
+  declarations: [AppComponent, PriceFormComponent, LogInComponent, CreateAccountComponent, UserPageComponent
+  , TutorialPageComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
