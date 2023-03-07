@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { PriceFormComponent } from './price-form/price-form.component';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { TutorialPageComponent } from './tutorial-page/tutorial-page.component';
 import { UserPageComponent } from './user-page/user-page.component';
 
@@ -26,6 +27,10 @@ const routes: Routes = [
    {
     path: 'TutorialPage',
     component:TutorialPageComponent
+   },
+   {
+       path: 'TransactionHistory',
+       component: TransactionHistoryComponent
    }
 ];
 
