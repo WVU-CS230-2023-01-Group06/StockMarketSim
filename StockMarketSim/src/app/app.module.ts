@@ -8,10 +8,11 @@ import { LogInComponent } from './log-in/log-in.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { TutorialPageComponent } from './tutorial-page/tutorial-page.component';
+import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 
 @NgModule({
   declarations: [AppComponent, PriceFormComponent, LogInComponent, CreateAccountComponent, UserPageComponent
-  , TutorialPageComponent],
+  , TutorialPageComponent, TransactionHistoryComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
