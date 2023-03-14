@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { GetPriceService } from '../get-price.service';
+import { GetPriceService } from '../../services/get-price.service';
 
 @Component({
   selector: 'app-price-form',
@@ -20,6 +20,9 @@ export class PriceFormComponent {
   onClick() {
     this.api.giveSymbol(this.symbol);
     this.api.getPrice().subscribe((stock) => {
+      if (Object.keys(stock).length == 0) {
+        this.priceLabel = 'STOCK NOT FOUND';
+      }
       this.stock = JSON.parse(JSON.stringify(stock));
       this.priceLabel = 'Price: ' + this.stock[0].bidPrice;
     });

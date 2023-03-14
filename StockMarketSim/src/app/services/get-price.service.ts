@@ -16,6 +16,7 @@ export class GetPriceService {
   }
 
   getPrice() {
+    //TODO: NEED TO SETUP PROPER ENV VARIABLES INSTEAD OF HARD CODING THE API KEY
     let url =
       'https://cloud.iexapis.com/stable/tops?token=pk_554abea8d34b4ec89301ea9beb841c6b&symbols=' +
       this.symbol;
