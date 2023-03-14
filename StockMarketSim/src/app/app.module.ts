@@ -10,6 +10,8 @@ import { UserPageComponent } from './layouts/user-page/user-page.component';
 import { TutorialPageComponent } from './layouts/tutorial-page/tutorial-page.component';
 import { TransactionHistoryComponent } from './layouts/transaction-history/transaction-history.component';
 import { HomeTemplateComponent } from './pages/home-template/home-template.component';
+import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { HomeTemplateComponent } from './pages/home-template/home-template.compo
     TutorialPageComponent,
     TransactionHistoryComponent,
     HomeTemplateComponent,
+    LandingLayoutComponent,
+    CarouselComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

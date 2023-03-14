@@ -7,6 +7,7 @@ import { TransactionHistoryComponent } from './layouts/transaction-history/trans
 import { TutorialPageComponent } from './layouts/tutorial-page/tutorial-page.component';
 import { UserPageComponent } from './layouts/user-page/user-page.component';
 import { HomeTemplateComponent } from './pages/home-template/home-template.component';
+import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
     path: 'Homepage',
     component: HomeTemplateComponent,
     children: [
+      {
+        path: '',
+        component: LandingLayoutComponent,
+      },
       {
         path: 'StockSearch',
         component: PriceFormComponent,
