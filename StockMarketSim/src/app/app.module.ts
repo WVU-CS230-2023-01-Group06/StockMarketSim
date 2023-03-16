@@ -9,10 +9,11 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { UserPageComponent } from './user-page/user-page.component';
 import { TutorialPageComponent } from './tutorial-page/tutorial-page.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { TopNavbarComponent } from './top-navbar/top-navbar.component';
 
 @NgModule({
   declarations: [AppComponent, PriceFormComponent, LogInComponent, CreateAccountComponent, UserPageComponent
-  , TutorialPageComponent, TransactionHistoryComponent],
+  , TutorialPageComponent, TransactionHistoryComponent, TopNavbarComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
