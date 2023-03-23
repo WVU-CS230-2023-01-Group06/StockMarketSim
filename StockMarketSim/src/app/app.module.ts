@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,7 @@ import { TransactionHistoryComponent } from './layouts/transaction-history/trans
 import { HomeTemplateComponent } from './pages/home-template/home-template.component';
 import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { NewsApiService } from './news-api.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
     CarouselComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [],
+  providers: [NewsApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
