@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LandingLayoutComponent } from './landing-layout.component';
 
 describe('LandingLayoutComponent', () => {
