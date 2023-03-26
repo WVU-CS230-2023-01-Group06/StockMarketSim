@@ -13,7 +13,7 @@ import { TransactionHistoryComponent } from './layouts/transaction-history/trans
 import { HomeTemplateComponent } from './pages/home-template/home-template.component';
 import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
-import { NewsApiService } from './news-api.service';
+import { NewsApiService } from './services/news-api.service';
 
 @NgModule({
   declarations: [

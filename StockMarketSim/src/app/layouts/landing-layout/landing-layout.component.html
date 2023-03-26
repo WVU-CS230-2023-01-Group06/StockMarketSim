@@ -1,1 +1,30 @@
-<app-carousel></app-carousel>
+<div *ngFor="let post of news.articles">
+
+<div class="card inline" style = "border-radius: 0px;">
+    
+        <div class = "row">
+    <div class="card-content" style= "
+    float: left;
+    display: grid;
+    place-items: center;
+    padding-right: 600px;
+    font-weight: 600;
+    transform: translateY(100%);
+    letter-spacing: 0.5px;">
+
+        <h1 class="card-title" style = "transform: translateY(-20%);">{{post.title}}</h1>
+      <div class = "card-text" >
+      <p class="card-text">
+        {{post.description}}
+    </p>
+
+    </div>
+    
+<a href= {{post.url}} class="new btn" style = "transform: translateY(60%); border-radius: 20px; width: fit-content;">Article Link</a>
+</div> 
+<div style = "margin-top: -119px;">
+<img src= {{post.urlToImage}} class="card-img" alt="..." style = " float:right; place-content: right; width: 600px;border-radius: 0px;">
+</div>
+</div>
+    </div>
+</div>
