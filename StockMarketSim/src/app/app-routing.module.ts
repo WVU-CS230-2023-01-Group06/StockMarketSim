@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateAccountComponent } from './pages/create-account/create-account.component';
 import { LogInComponent } from './pages/log-in/log-in.component';
-import { PriceFormComponent } from './components/price-form/price-form.component';
+import { StockSearchLayoutComponent } from './layouts/stock-search-layout/stock-search-layout.component';
 import { TransactionHistoryComponent } from './layouts/transaction-history/transaction-history.component';
 import { TutorialPageComponent } from './layouts/tutorial-page/tutorial-page.component';
 import { UserPageComponent } from './layouts/user-page/user-page.component';
@@ -28,7 +28,7 @@ const routes: Routes = [
       },
       {
         path: 'StockSearch',
-        component: PriceFormComponent,
+        component: StockSearchLayoutComponent,
       },
       {
         path: 'TutorialPage',

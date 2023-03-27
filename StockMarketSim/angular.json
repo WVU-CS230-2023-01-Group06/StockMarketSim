@@ -91,6 +91,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "StockMarketSim:build:production",
+            "firebaseProject": "stockmarketsim-f4fb3",
+            "firebaseHostingSite": "stockmarketsim-f4fb3"
+          }
         }
       }
     }

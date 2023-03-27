@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "stockmarketsim-f4fb3": {
+      "hosting": {
+        "StockMarketSim": [
+          "stockmarketsim-f4fb3"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "stockmarketsim-f4fb3"
+  }
+}
