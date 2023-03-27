@@ -1,0 +1,13 @@
+.bd-example {  /*for carousel */
+    padding: 1.5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: .2rem;
+    border: solid #f7f7f9;
+  }
+
+  .center {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+  }
