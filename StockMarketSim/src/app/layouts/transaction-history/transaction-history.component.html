@@ -14,11 +14,17 @@
             <th scope="col">Balance</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let item of transactionTableRows; index as i">
+        <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{item.date}}</td>
+            <td>{{item.stock}}</td>
+            <td>{{item.transaction}}</td>
+            <td>{{item.balance}}</td>
+        </tr>
+        <!--
         <tr>
             <th scope="row">1</th>
-            <!-- Use Date.prototype.toLocaleDateString() i.e., month/day/year -->
-            <!-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString -->
             <td>3/7/2023</td>
             <td>APPL</td>
             <td>-$153.89</td>
@@ -38,5 +44,6 @@
             <td>+$193.81</td>
             <td>$912.65</td>
         </tr>
+        -->
     </tbody>
 </table>
