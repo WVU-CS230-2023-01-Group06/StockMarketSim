@@ -1,22 +1,44 @@
 <h1>Sign in or create an account</h1>
 
-<form style = "margin:auto; width: 40%; padding-left: 10px;">
-    <a>* indicates required field</a>
-    
-    <div class="form-outline mb-4">
-      <input type="username" id="form" class="form-control" />
-      <label class="form-label" for="form">Username*</label>
-    </div>
-  
-    <div class="form-outline mb-4">
-      <input type="password" id="form" class="form-control" />
-      <label class="form-label" for="form">Password*</label>
-    </div>
-<div class = "button">
-    <button type="button" class="btn btn-primary btn-block mb-4 " routerLink="Homepage">Sign in</button>
-    </div>
-    <div class = "button">
-    <button type="button" class="btn btn-primary btn-block mb-4 " routerLink="CreateAccount">Create Account</button>
+<form
+  style="margin: auto; width: 40%; padding: 10px"
+  #loginForm="ngForm"
+  (ngSubmit)="login()"
+>
+  <div class="form-outline mb-4">
+    <input
+      [(ngModel)]="email"
+      type="username"
+      class="form-control"
+      name="username"
+      ngModel
+    />
+    <label class="form-label" for="form">Email</label>
+  </div>
+
+  <div class="form-outline mb-4">
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      [(ngModel)]="password"
+      ngModel
+    />
+    <label class="form-label" for="form">Password</label>
+  </div>
+  <div class="button">
+    <button type="submit" class="btn btn-primary btn-block mb-4">
+      Sign in
+    </button>
+  </div>
+  <div class="button">
+    <button
+      type="button"
+      class="btn btn-primary btn-block mb-4"
+      routerLink="CreateAccount"
+    >
+      Create Account
+    </button>
   </div>
 </form>
-  <br>
+<br />

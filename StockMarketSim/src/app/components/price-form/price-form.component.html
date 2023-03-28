@@ -1,17 +1,43 @@
-<form class="row row-lg-auto w-75 text-center mx-auto">
-    <label for="qoute" class="form-label text-end col bg-info">Stock Symbol:</label>
-    <input
-      type="text"
-      class="form-control col"
-      #box
-      aria-describedby="price-form"
-      (keyup)="getSymbolInput(box.value)"
-      placeholder="ex. AAPL"
-    />
-    {{ symbol }}
-  <button type="button" (click)="onClick()" class="btn btn-primary col">
-    Get qoute
-  </button>
+<form
+  #quoteForm="ngForm"
+  (ngSubmit)="onQuoteSubmit()"
+  class="row row-lg-auto w-75 text-center mx-auto"
+>
+  <label for="qoute" class="form-label text-end col">Stock Symbol:</label>
+  <input
+    type="text"
+    class="form-control col"
+    name="symbol"
+    [(ngModel)]="symbol"
+    aria-describedby="price-form"
+    placeholder="ex. AAPL"
+  />
+  <button type="submit" class="btn btn-primary col">Get Quote</button>
+</form>
+<div class="text-center">{{ quoteLabel }}</div>
+
+<form
+  class="row row-lg-auto w-75 text-center mx-auto mt-3"
+  #buyForm="ngForm"
+  (ngSubmit)="onBuySubmit()"
+>
+  <label for="buy" class="form-label text-end col">Stock Symbol:</label>
+  <input
+    type="text"
+    class="form-control col"
+    aria-describedby="price-form"
+    name="symbol"
+    [(ngModel)]="symbol"
+    placeholder="ex. AAPL"
+  />
+  <input
+    type="number"
+    class="form-control col"
+    [(ngModel)]="qty"
+    name="qty"
+    aria-describedby="price-form"
+    placeholder="ex. 1"
+  />
+  <button type="submit" class="btn btn-primary col">Buy</button>
 </form>
 <div class="text-center">{{ priceLabel }}</div>
-
