@@ -31,7 +31,7 @@ export class TransactionHistoryComponent {
         get(transactionsRef)
           .then((snapshot) => {
             snapshot.forEach((child) => {
-              console.log(child.val().symbol);
+              console.log(child.val());
             });
           })
           .catch((error) => console.error(error));
