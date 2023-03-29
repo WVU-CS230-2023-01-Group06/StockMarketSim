@@ -17,8 +17,7 @@ import {
 })
 export class UserPageComponent {
   total: number = 0;
-  allStocks: object[] = [];
-
+  stockTotals = new Map<string, number>();
   constructor(private router: Router) {}
   ngOnInit() {
     const auth = getAuth();
@@ -33,11 +32,18 @@ export class UserPageComponent {
         get(transactionsRef)
           .then((snapshot) => {
             snapshot.forEach((child) => {
-              this.allStocks.push(child.val());
+              let symbol = child.val().symbol;
+
+              if (this.stockTotals.has(symbol)) {
+                let oldQty = this.stockTotals.get(symbol);
+                this.stockTotals.set(symbol, child.val().qty + oldQty);
+              } else {
+                this.stockTotals.set(symbol, child.val().qty)
+              }
             });
           })
           .catch((error) => console.error(error));
-        this.allStocks.forEach((stock) => {});
+          console.log(this.stockTotals);
       } else {
         this.router.navigate(['/']);
       }
