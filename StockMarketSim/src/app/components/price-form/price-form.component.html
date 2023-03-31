@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form class="w-25 text-center mx-auto">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Stock Symbol</label>
@@ -14,5 +15,24 @@
   <button type="button" (click)="onClick()" class="btn btn-primary">
     Get Price
   </button>
+=======
+<!-- TODO: FIX STYLING, GENERALLY MAKE PRETTIER -->
+
+<form
+  #quoteForm="ngForm"
+  (ngSubmit)="onQuoteSubmit()"
+  class="row row-lg-auto w-75 text-center mx-auto"
+>
+  <label for="qoute" class="form-label text-end col">Stock Symbol:</label>
+  <input
+    type="text"
+    class="form-control col"
+    name="symbol"
+    [(ngModel)]="symbol"
+    aria-describedby="price-form"
+    placeholder="ex. AAPL"
+  />
+  <button type="submit" class="btn btn-primary col">Get Quote</button>
+>>>>>>> 162cd1a (Added todo-comments)
 </form>
 {{ priceLabel }}

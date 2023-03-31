@@ -1,7 +1,23 @@
+<<<<<<< HEAD
 import { Component, OnInit, Input } from '@angular/core';
 import { TransactionHistoryModel } from './transaction-history.model';
 import { transaction_mock_list } from './transaction_mock_list';
 
+=======
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {
+  child,
+  equalTo,
+  get,
+  getDatabase,
+  orderByChild,
+  ref,
+  query,
+} from 'firebase/database';
+//TODO: ADD FIELDS FOR THE DATA TO BE DISPLAYED, DISPLAY THE DATA WITH DATA BINDING
+>>>>>>> 162cd1a (Added todo-comments)
 @Component({
   selector: 'app-transaction-history',
   templateUrl: './transaction-history.component.html',
