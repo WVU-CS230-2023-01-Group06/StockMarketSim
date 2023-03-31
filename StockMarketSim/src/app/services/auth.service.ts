@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { getAuth } from 'firebase/auth';
+import { getDatabase, ref, set } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +26,18 @@ export class AuthService {
   createAccount(email: string, password: string) {
     this.fireauth.createUserWithEmailAndPassword(email, password).then(
       () => {
+        const auth = getAuth();
+        const db = getDatabase();
+        const user = auth.currentUser;
+        if (!user) {
+          throw new Error('how the fuck');
+        } else {
+          let uid = user.uid;
+          const userBalanceListRef = ref(db, 'usersBalance/' + uid);
+          set(userBalanceListRef, {
+            balance: 10000,
+          });
+        }
         alert('Registered');
         this.router.navigate(['/']);
       },

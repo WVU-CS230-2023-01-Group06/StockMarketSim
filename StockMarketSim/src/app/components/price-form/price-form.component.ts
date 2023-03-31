@@ -1,6 +1,18 @@
 import { Component } from '@angular/core';
 import { GetPriceService } from '../../services/get-price.service';
-import { getDatabase, ref, set, push } from 'firebase/database';
+import {
+  getDatabase,
+  ref,
+  set,
+  push,
+  query,
+  Database,
+  orderByChild,
+  get,
+  equalTo,
+  orderByValue,
+  orderByKey,
+} from 'firebase/database';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Router } from '@angular/router';
 
@@ -14,9 +26,10 @@ export class PriceFormComponent {
   priceLabel = '';
   stock: any;
   buyLabel = '';
-  symbol = ' ';
+  symbol = '';
   qty = 0;
-
+  uid: any;
+  balance = 0;
   constructor(private api: GetPriceService, private router: Router) {}
 
   onQuoteSubmit() {
@@ -31,39 +44,57 @@ export class PriceFormComponent {
     });
   }
 
-  onBuySubmit() {
+  async onBuySubmit() {
     const db = getDatabase();
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+    const balanceRef = ref(db, 'usersBalance');
+    onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const uid = user.uid;
+        this.uid = user.uid;
       } else {
         this.router.navigate(['/']);
       }
     });
-    const user = auth.currentUser;
-    const transactionListRef = ref(db, 'transactions');
-    const newBuyRef = push(transactionListRef);
     this.api.giveSymbol(this.symbol);
-    this.api.getPrice().subscribe((stock) => {
+    this.api.getPrice().subscribe(async (stock) => {
       if (Object.keys(stock).length == 0) {
-        this.buyLabel = 'STOCK NOT FOUND';
+        this.priceLabel = 'STOCK NOT FOUND';
       } else {
+        const snapshot = await get(
+          query(balanceRef, orderByKey(), equalTo(this.uid))
+        );
+        const balanceObj = <object>Object.values(snapshot.val())[0];
+        this.balance = Object.values(balanceObj)[0];
         this.stock = JSON.parse(JSON.stringify(stock));
-        set(newBuyRef, {
-          uid: user?.uid,
-          price: this.stock[0].lastSalePrice,
-          symbol: this.symbol,
-          timestamp: Date.now(),
-          qty: this.qty,
-        });
-        this.priceLabel =
-          'Bought ' +
-          this.qty +
-          ' shares of ' +
-          this.symbol +
-          ' for ' +
-          this.qty * this.stock[0].lastSalePrice;
+        if (this.stock[0].lastSalePrice * this.qty > this.balance) {
+          this.priceLabel = 'Not enough money';
+        } else {
+          var newBalance =
+            this.balance - this.stock[0].lastSalePrice * this.qty;
+          console.log();
+          set(ref(db, 'usersBalance/' + this.uid), {
+            balance: newBalance,
+          });
+
+          const transactionListRef = ref(db, 'transactions');
+          const newBuyRef = push(transactionListRef);
+
+          set(newBuyRef, {
+            uid: this.uid,
+            price: this.stock[0].lastSalePrice,
+            symbol: this.symbol,
+            timestamp: Date.now(),
+            qty: this.qty,
+          });
+
+          this.priceLabel =
+            'Bought ' +
+            this.qty +
+            ' shares of ' +
+            this.symbol +
+            ' for ' +
+            this.qty * this.stock[0].lastSalePrice;
+        }
       }
     });
   }
