@@ -10,7 +10,7 @@ import {
   ref,
   query,
 } from 'firebase/database';
-
+//TODO: ADD FIELDS FOR THE DATA TO BE DISPLAYED, DISPLAY THE DATA WITH DATA BINDING
 @Component({
   selector: 'app-transaction-history',
   templateUrl: './transaction-history.component.html',

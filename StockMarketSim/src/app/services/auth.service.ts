@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { getAuth } from 'firebase/auth';
 import { getDatabase, ref, set } from 'firebase/database';
 
+//TODO: ADD USERNAME?
 @Injectable({
   providedIn: 'root',
 })
