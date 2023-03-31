@@ -33,7 +33,7 @@ export class PriceFormComponent {
   constructor(private api: GetPriceService, private router: Router) {}
 
   onQuoteSubmit() {
-    this.api.giveSymbol(this.symbol);
+    this.api.giveSymbol(this.symbol.toLowerCase().trim());
     this.api.getPrice().subscribe((stock) => {
       if (Object.keys(stock).length == 0) {
         this.quoteLabel = 'STOCK NOT FOUND';
