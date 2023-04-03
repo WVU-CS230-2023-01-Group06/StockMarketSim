@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <form class="w-25 text-center mx-auto">
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Stock Symbol</label>
@@ -15,7 +15,6 @@
   <button type="button" (click)="onClick()" class="btn btn-primary">
     Get Price
   </button>
-=======
 <!-- TODO: FIX STYLING, GENERALLY MAKE PRETTIER -->
 
 <form
@@ -33,6 +32,32 @@
     placeholder="ex. AAPL"
   />
   <button type="submit" class="btn btn-primary col">Get Quote</button>
->>>>>>> 162cd1a (Added todo-comments)
 </form>
-{{ priceLabel }}
+<div class="text-center">{{ quoteLabel }}</div>
+
+<form
+  class="row row-lg-auto w-75 text-center mx-auto mt-3"
+  #buyForm="ngForm"
+  (ngSubmit)="onBuySubmit()"
+>
+  <label for="buy" class="form-label text-end col">Stock Symbol:</label>
+  <input
+    type="text"
+    class="form-control col"
+    aria-describedby="price-form"
+    name="symbol"
+    [(ngModel)]="symbol"
+    placeholder="ex. AAPL"
+  />
+  <input
+    type="number"
+    class="form-control col"
+    [(ngModel)]="qty"
+    name="qty"
+    aria-describedby="price-form"
+    placeholder="ex. 1"
+    min="0"
+  />
+  <button type="submit" class="btn btn-primary col">Buy</button>
+</form>
+<div class="text-center">{{ priceLabel }}</div>

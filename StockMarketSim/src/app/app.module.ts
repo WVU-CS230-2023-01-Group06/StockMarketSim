@@ -14,6 +14,10 @@ import { HomeTemplateComponent } from './pages/home-template/home-template.compo
 import { LandingLayoutComponent } from './layouts/landing-layout/landing-layout.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NewsApiService } from './services/news-api.service';
+import { StockSearchLayoutComponent } from './layouts/stock-search-layout/stock-search-layout.component';
+import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+import { firebaseConfig } from 'src/enviornments/enviorment';
 
 @NgModule({
   declarations: [
@@ -27,8 +31,15 @@ import { NewsApiService } from './services/news-api.service';
     HomeTemplateComponent,
     LandingLayoutComponent,
     CarouselComponent,
+    StockSearchLayoutComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+  ],
   providers: [NewsApiService],
   bootstrap: [AppComponent],
 })
