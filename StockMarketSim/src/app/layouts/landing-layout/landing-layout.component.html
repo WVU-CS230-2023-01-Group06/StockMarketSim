@@ -1,1 +1,10 @@
-<app-carousel></app-carousel>
+<div *ngFor="let post of news.articles">
+<div class="card w-75">
+    <div class="card-body">
+    <img class="card-img-top" src={{post.urlToImage}} onError="blank.png" alt="Card image cap">
+      <h5 class="card-title">{{post.title}}</h5>
+      <p class="card-text">{{post.description}}</p>
+      <a href={{post.url}} class="btn btn-primary" style = "background-color: gray;">Read Article</a>
+    </div>
+  </div>
+</div>
