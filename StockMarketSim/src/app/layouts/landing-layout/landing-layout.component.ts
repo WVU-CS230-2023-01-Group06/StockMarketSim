@@ -13,7 +13,8 @@ export class LandingLayoutComponent implements OnInit{
   constructor(private newsapi:NewsApiService){      
   }
   news= {articles:[] as any};
-  newsSources= {sources:[]}
+  newsSources= {sources:[]};
+  
 
   ngOnInit() {
         //load articles
@@ -25,6 +26,13 @@ export class LandingLayoutComponent implements OnInit{
       
     });
     }
+    
+   // searchArticles(sources: String){
+   // this.newsapi.getArticlesByID(sources).subscribe((response) => {
+    //  console.log(response);
+    //  this.news = JSON.parse(JSON.stringify(response));
+   // });
+   // }
 
 
   
