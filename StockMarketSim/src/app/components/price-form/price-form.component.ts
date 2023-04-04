@@ -43,7 +43,6 @@ export class PriceFormComponent {
       }
     });
   }
-
   async onBuySubmit() {
     const db = getDatabase();
     const auth = getAuth();
