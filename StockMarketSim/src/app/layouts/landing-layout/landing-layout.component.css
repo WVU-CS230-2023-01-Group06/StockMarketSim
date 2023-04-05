@@ -1,0 +1,13 @@
+h6{
+    font-size: 60px;
+    font-weight: lighter;
+    width:800px; 
+    margin:auto;
+    text-align: center;
+}
+div[class="row"]{
+    font-weight: lighter;
+    width:800px; 
+    margin:auto;
+    text-align: center;
+}
