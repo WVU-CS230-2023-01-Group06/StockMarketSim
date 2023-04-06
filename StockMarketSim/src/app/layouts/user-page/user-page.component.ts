@@ -7,6 +7,7 @@ import {
   get,
   getDatabase,
   orderByChild,
+  orderByKey,
   query,
   ref,
 } from 'firebase/database';
@@ -27,6 +28,17 @@ export class UserPageComponent {
     const db = getDatabase();
     onAuthStateChanged(auth, async (user) => {
       if (user) {
+        const balanceRef = query(
+          ref(db, 'usersBalance/'),
+          orderByKey(),
+          equalTo(user.uid)
+        );
+        await get(balanceRef).then((snapshot) => {
+          snapshot.forEach((child) => {
+            this.balance = child.val().balance
+          })
+
+        })
         const transactionsRef = query(
           ref(db, 'transactions/'),
           orderByChild('uid'),
@@ -50,8 +62,8 @@ export class UserPageComponent {
             let stock;
             this.api.getPrice().subscribe((stock) => {
               let resp =JSON.parse(JSON.stringify(stock));
-              this.balance += Number.parseFloat((Math.round(resp[0].lastSalePrice * 100) / 100).toFixed(2));
-
+              this.balance += resp[0].lastSalePrice
+              this.balance = Math.round(this.balance * 100) / 100
             })
           }
         } else {
