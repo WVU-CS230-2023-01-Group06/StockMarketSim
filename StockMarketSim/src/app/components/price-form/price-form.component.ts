@@ -54,7 +54,7 @@ export class PriceFormComponent {
         this.router.navigate(['/']);
       }
     });
-    this.api.giveSymbol(this.symbol);
+    this.api.giveSymbol(this.symbol.toLowerCase().trim());
     this.api.getPrice().subscribe(async (stock) => {
       if (Object.keys(stock).length == 0) {
         this.priceLabel = 'STOCK NOT FOUND';
@@ -81,7 +81,7 @@ export class PriceFormComponent {
           set(newBuyRef, {
             uid: this.uid,
             price: this.stock[0].lastSalePrice,
-            symbol: this.symbol,
+            symbol: this.symbol.toLowerCase().trim(),
             timestamp: Date.now(),
             qty: this.qty,
           });
