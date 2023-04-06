@@ -2,5 +2,11 @@
   "rules": {
     ".read": "now < 1682049600000",  // 2023-4-21
     ".write": "now < 1682049600000",  // 2023-4-21
+    "transactions": {
+      ".indexOn": "uid"
+    },
+    "usersBalance": {
+      ".indexOn": "uid"
+    },
   }
 }
