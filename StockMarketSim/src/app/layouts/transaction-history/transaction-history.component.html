@@ -8,42 +8,21 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Date</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Transaction</th>
-            <th scope="col">Balance</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Symbol</th>
+            <th scope="col">Timestamp</th>
+            <!--<th scope="col">Date</th>-->
         </tr>
     </thead>
     <tbody *ngFor="let item of transactionTableRows; index as i">
         <tr>
             <th scope="row">{{i + 1}}</th>
-            <td>{{item.date}}</td>
-            <td>{{item.stock}}</td>
-            <td>{{item.transaction}}</td>
-            <td>{{item.balance}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.qty}}</td>
+            <td>{{item.symbol}}</td>
+            <td>{{item.timestamp}}</td>
+            <!--<td>{{item.date}}</td>-->
         </tr>
-        <!--
-        <tr>
-            <th scope="row">1</th>
-            <td>3/7/2023</td>
-            <td>APPL</td>
-            <td>-$153.89</td>
-            <td>$800.00</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>3/9/2023</td>
-            <td>AMD</td>
-            <td>-$81.16</td>
-            <td>$718.84</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>3/11/2023</td>
-            <td>TSLA</td>
-            <td>+$193.81</td>
-            <td>$912.65</td>
-        </tr>
-        -->
     </tbody>
 </table>

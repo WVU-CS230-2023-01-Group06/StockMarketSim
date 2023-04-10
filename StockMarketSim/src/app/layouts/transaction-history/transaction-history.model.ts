@@ -1,13 +1,15 @@
 export class TransactionHistoryModel {
+    price: number;
+    qty: number;
+    symbol: string;
+    timestamp: number;
     date: string;
-    stock: string;
-    transaction: string;
-    balance: string;
 
-    constructor(date: string, stock: string, transaction: number, balance: number) {
-        this.date = date;
-        this.stock = stock;
-        this.transaction = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", signDisplay: "always" }).format(transaction);
-        this.balance = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(balance);
+    constructor(price: number, qty: number, symbol: string, timestamp: number) {
+        this.price = price;
+        this.qty = qty;
+        this.symbol = symbol;
+        this.timestamp = timestamp;
+        this.date = new Date(timestamp).toLocaleString();
     }
 }
