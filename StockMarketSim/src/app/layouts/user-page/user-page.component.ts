@@ -65,7 +65,7 @@ export class UserPageComponent {
               this.balance += resp[0].lastSalePrice
               this.balance = Math.round(this.balance * 100) / 100
             })
-          }
+          } console.log(this.stockTotals)
         } else {
         this.router.navigate(['/']);
       }

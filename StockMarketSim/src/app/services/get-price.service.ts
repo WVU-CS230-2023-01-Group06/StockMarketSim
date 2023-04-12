@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { enviornment } from 'src/enviornments/enviorment';
 import {
   HttpClient,
   HttpHeaders,
@@ -18,7 +19,8 @@ export class GetPriceService {
   getPrice() {
     //TODO: NEED TO SETUP PROPER ENV VARIABLES INSTEAD OF HARD CODING THE API KEY
     let url =
-      'https://cloud.iexapis.com/stable/tops?token=pk_554abea8d34b4ec89301ea9beb841c6b&symbols=' +
+      'https://cloud.iexapis.com/stable/tops?token=' + enviornment.PRICE_KEY +
+      '&symbols=' +
       this.symbol;
     let price = this.http.get(url);
     return price;
