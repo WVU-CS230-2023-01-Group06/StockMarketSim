@@ -10,33 +10,19 @@ import { NewsApiService } from '../../services/news-api.service';
 })
 export class LandingLayoutComponent implements OnInit{
   
-  constructor(private newsapi:NewsApiService){      
-  }
-  news= {articles:[] as any};
-  newsSources= {sources:[]};
-  
+  constructor(private newsapi:NewsApiService){}
+
+  news = {articles:[] as any};
 
   ngOnInit() {
-        //load articles
+
+      //Logging of the Article Info from JSON file
       this.newsapi.articleInfo().subscribe((response) => {
         console.log(response);
         this.news = JSON.parse(JSON.stringify(response));
-
-        
-      
     });
+
     }
-    
-   // searchArticles(sources: String){
-   // this.newsapi.getArticlesByID(sources).subscribe((response) => {
-    //  console.log(response);
-    //  this.news = JSON.parse(JSON.stringify(response));
-   // });
-   // }
-
-
-  
-
 }
 
 

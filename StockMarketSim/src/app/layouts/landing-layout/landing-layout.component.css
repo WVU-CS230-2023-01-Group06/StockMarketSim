@@ -5,7 +5,21 @@ h6{
     margin:auto;
     text-align: center;
 }
+h3{
+    font-size: 30px;
+    font-weight: lighter;
+    width:800px; 
+    margin:auto;
+    text-align: center;
+}
+
 div[class="row"]{
+    font-weight: lighter;
+    width:800px; 
+    margin:auto;
+    text-align: center;
+}
+p[class= "description"]{
     font-weight: lighter;
     width:800px; 
     margin:auto;

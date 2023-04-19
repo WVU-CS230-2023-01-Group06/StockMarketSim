@@ -1,9 +1,13 @@
-<h6>Welcome Back!</h6>
+<h6>Welcome!</h6>
+<p class = "description">Thank you visiting Stock Sim. Simulation to view trends of stock buys in real time with your own balance!</p>
 <div class="row">
 <p class = "Header Text">Check out your
 <a class="nav-link" style="text-decoration: underline;" routerLink="UserPage">stocks progress</a>
 </p>
 </div>
+<br />
+
+<h3 style ="font-weight: 100;">Top Stock Headlines</h3>
 
 <div class = "d-flex flex-wrap">
 <div *ngFor="let post of news.articles">
@@ -16,5 +20,4 @@
     </div>
   </div>
 </div>
-
 </div>
