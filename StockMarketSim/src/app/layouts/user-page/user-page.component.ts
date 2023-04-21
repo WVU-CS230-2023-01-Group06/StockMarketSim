@@ -88,7 +88,6 @@ export class UserPageComponent {
   onSellSubmit() {
     const db = getDatabase();
     const auth = getAuth();
-    const balanceRef = ref(db, 'usersBalance');
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         this.uid = user.uid;
@@ -101,15 +100,10 @@ export class UserPageComponent {
       if (Object.keys(stock).length == 0) {
         this.sellLabel = 'STOCK NOT FOUND';
       } else {
-        const snapshot = await get(
-          query(balanceRef, orderByKey(), equalTo(this.uid))
-        );
-        const balanceObj = <object>Object.values(snapshot.val())[0];
-        this.balance = Object.values(balanceObj)[0];
         this.stock = JSON.parse(JSON.stringify(stock));
         if (!this.stockTotals.has(this.symbol.toLowerCase().trim())) {
           this.sellLabel = 'you don\'t own that stock';
-        }else if( this.qty > this.stockTotals.get("symbol") ){
+        }else if( this.qty > this.stockTotals.get(this.symbol.toLowerCase().trim())){
           this.sellLabel = 'you don\'t own that many of ' + this.symbol
         } else {
           var newBalance =
