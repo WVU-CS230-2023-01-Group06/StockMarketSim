@@ -16,7 +16,7 @@ import {
 import { GetBalanceService } from 'src/app/services/get-balance.service';
 import { TransactionListService } from 'src/app/services/transaction-list.service';
 
-//TODO: ADD SELL FUNCTIONALITY, DISPLAY USER BALANCE, FIELDS FOR DISPLAYING DATA, DATABINDING TO DISPLAY DATA
+//TODO: DISPLAY USER BALANCE, FIELDS FOR DISPLAYING DATA, DATABINDING TO DISPLAY DATA
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
@@ -65,14 +65,16 @@ export class UserPageComponent {
                 this.stockTotals.set(symbol, child.val().qty + oldQty);
               } else {
                 this.stockTotals.set(symbol, child.val().qty);
+              } if (this.stockTotals.get(symbol) == 0) {
+                this.stockTotals.delete(symbol);
               }
             });
           })
           .catch((error) => console.error(error));
-          for await (let [key, value] of this.stockTotals) {
+          for await (let [key] of this.stockTotals) {
             this.api.giveSymbol(key);
             this.api.getPrice().subscribe((stock) => {
-              let resp =JSON.parse(JSON.stringify(stock));
+              let resp = JSON.parse(JSON.stringify(stock));
               this.balance += resp[0].lastSalePrice
               this.balance = Math.round(this.balance * 100) / 100
             })
