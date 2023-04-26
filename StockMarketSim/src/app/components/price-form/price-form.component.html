@@ -1,33 +1,42 @@
-
 <!-- TODO: FIX STYLING, GENERALLY MAKE PRETTIER -->
 
 <form
   #quoteForm="ngForm"
   (ngSubmit)="onQuoteSubmit()"
-  class="row row-lg-auto w-75 text-center mx-auto"
+  class="row row-lg-auto w-75 text-center mx-auto p-3"
 >
-  <label for="qoute" class="form-label text-end col">Stock Symbol:</label>
+  <label for="qoute" class="form-label mt-2 text-end col fs-5"
+    >Stock Symbol:</label
+  >
   <input
     type="text"
-    class="form-control col"
+    class="form-control col m-2"
     name="symbol"
     [(ngModel)]="symbol"
     aria-describedby="price-form"
     placeholder="ex. AAPL"
   />
-  <button type="submit" class="btn btn-primary col">Get Quote</button>
+  <button
+    type="submit"
+    class="btn col m-2"
+    style="background-color: gray; color: white"
+  >
+    Get Quote
+  </button>
 </form>
-<div class="text-center">{{ quoteLabel }}</div>
+<div class="text-center fs-5 m-1">{{ quoteLabel }}</div>
 
 <form
   class="row row-lg-auto w-75 text-center mx-auto mt-3"
   #buyForm="ngForm"
   (ngSubmit)="onBuySubmit()"
 >
-  <label for="buy" class="form-label text-end col">Stock Symbol:</label>
+  <label for="buy" class="form-label text-end col fs-5 mt-2"
+    >Stock Symbol:</label
+  >
   <input
     type="text"
-    class="form-control col"
+    class="form-control col m-2"
     aria-describedby="price-form"
     name="symbol"
     [(ngModel)]="symbol"
@@ -35,13 +44,19 @@
   />
   <input
     type="number"
-    class="form-control col"
+    class="form-control col m-2"
     [(ngModel)]="qty"
     name="qty"
     aria-describedby="price-form"
     placeholder="ex. 1"
     min="0"
   />
-  <button type="submit" class="btn btn-primary col">Buy</button>
+  <button
+    type="submit"
+    class="btn col m-2"
+    style="background-color: gray; color: white"
+  >
+    Buy
+  </button>
 </form>
-<div class="text-center">{{ priceLabel }}</div>
+<div class="text-center fs-5 m-3">{{ priceLabel }}</div>
