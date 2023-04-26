@@ -1,10 +1,12 @@
-<p>USER PAGE STUB/ Portfolio Page </p>
-{{balance }}
-<div class="card" style="width: 18rem; float: right;">
-    <img src="https://picsum.photos/1000/1000" >
-    <div class="card-body">
-      <p class="card-text">These are the investment trends of stock you have purchased   </p>
-    </div>
+<p>USER PAGE STUB/ Portfolio Page</p>
+{{ balance }}
+<div class="card" style="width: 18rem; float: right">
+  <img src="https://picsum.photos/1000/1000" />
+  <div class="card-body">
+    <p class="card-text">
+      These are the investment trends of stock you have purchased
+    </p>
+  </div>
 </div>
 
 <form
@@ -29,6 +31,7 @@
     aria-describedby="sell-form"
     placeholder="ex. 1"
     min="0"
+    onkeyup="if(value<0) value=0;"
   />
   <button type="submit" class="btn btn-primary col">Sell</button>
 </form>
