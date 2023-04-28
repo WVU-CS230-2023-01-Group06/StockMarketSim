@@ -12,7 +12,6 @@
             <th scope="col">Quantity</th>
             <th scope="col">Symbol</th>
             <th scope="col">Timestamp</th>
-            <!--<th scope="col">Date</th>-->
         </tr>
     </thead>
     <tbody *ngFor="let item of transactionTableRows; index as i">
@@ -22,7 +21,6 @@
             <td>{{item.qty}}</td>
             <td>{{item.symbol}}</td>
             <td>{{item.timestamp}}</td>
-            <!--<td>{{item.date}}</td>-->
         </tr>
     </tbody>
 </table>

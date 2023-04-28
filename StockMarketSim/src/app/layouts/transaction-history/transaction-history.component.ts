@@ -14,13 +14,11 @@ export class TransactionHistoryComponent implements OnInit {
     @Input() qty: number;
     @Input() symbol: string;
     @Input() timestamp: number;
-    //@Input() date: string;
 
     constructor(private router: Router) {
         this.price = 0.00;
         this.qty = 0;
         this.symbol = "STOCK";
-        //this.date = "1/1/1970, 12:00:00 AM";
         this.timestamp = 0;
     }
 
@@ -39,7 +37,6 @@ export class TransactionHistoryComponent implements OnInit {
                     snapshot.forEach((child) => {
                         console.log(child.val());
                         this.transactionTableRows.push(child.val());
-                        //console.log(this.transactionTableRows.at(0)?.timestamp);
                     });
                 })
                 .catch((error) => console.error(error));
