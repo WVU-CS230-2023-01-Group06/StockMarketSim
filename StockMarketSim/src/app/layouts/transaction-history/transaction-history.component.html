@@ -1,16 +1,14 @@
-<form class="form-inline m-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-</form>
-<div class="card m-2 px-2 text-center" style="width: 220px;">
+<div class="card m-2 px-2 text-center" style="width: 15rem;">
     <p class="card-text">Account Balance: {{userBalance}}</p>
 </div>
-<table class="table m-2">
+<table class="table m-2 text-center">
     <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Symbol</th>
+            <th scope="col">Total</th>
             <th scope="col">Date</th>
         </tr>
     </thead>
@@ -20,6 +18,7 @@
             <td>{{item.priceToString}}</td>
             <td>{{item.qty}}</td>
             <td>{{item.symbol}}</td>
+            <td>{{item.totalToString}}</td>
             <td>{{item.date}}</td>
         </tr>
     </tbody>
