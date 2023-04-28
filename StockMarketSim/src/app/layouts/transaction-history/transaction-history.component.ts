@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { equalTo, get, getDatabase, orderByChild, ref, query } from 'firebase/database';
 import { GetBalanceService } from 'src/app/services/get-balance.service';
+import { TransactionSnapshot } from './transaction-snapshot';
 
 @Component({
     selector: 'app-transaction-history',
@@ -16,13 +17,13 @@ export class TransactionHistoryComponent implements OnInit {
     @Input() price: number;
     @Input() qty: number;
     @Input() symbol: string;
-    @Input() timestamp: number;
+    @Input() date: string;
 
     constructor(private router: Router, private balanceDB: GetBalanceService) {
         this.price = 0.00;
         this.qty = 0;
         this.symbol = "STOCK";
-        this.timestamp = 0;
+        this.date = "";
     }
 
     ngOnInit() {
@@ -38,8 +39,14 @@ export class TransactionHistoryComponent implements OnInit {
                 get(transactionsRef)
                 .then((snapshot) => {
                     snapshot.forEach((child) => {
-                        console.log(child.val());
-                        this.transactionTableRows.push(child.val());
+                        const snap: TransactionSnapshot = child.val();
+                        const transaction = new TransactionHistoryModel(
+                            snap.price,
+                            Math.abs(snap.qty),
+                            snap.symbol.toUpperCase(),
+                            snap.timestamp
+                        );
+                        this.transactionTableRows.push(transaction);
                     });
                 })
                 .catch((error) => console.error(error));
