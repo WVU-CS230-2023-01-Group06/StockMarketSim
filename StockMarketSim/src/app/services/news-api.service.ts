@@ -1,3 +1,9 @@
+/*
+* @author Kiara Neira
+* Created: 03/26/23
+* Latest Update: 04/29/23
+* News API Service to read http url and send out Article Info on Stock Specific News
+*/
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { enviornment } from 'src/enviornments/enviorment';
@@ -9,8 +15,12 @@ export class NewsApiService {
 
   constructor(private http:HttpClient) { }
   
-  newsURL = "https://newsapi.org/v2/top-headlines?q=stock&apiKey=" + enviornment.NEWS_KEY;
+  newsURL = "https://newsapi.org/v2/top-headlines?q=stock+market&apiKey=" + enviornment.NEWS_KEY;
 
+  /*
+  * @return JSON formatted Article Info from newsURL
+  * Method to Get Article Info and return information provided by given URL
+  */
   articleInfo(){
   return this.http.get(this.newsURL);
  }
