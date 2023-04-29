@@ -1,18 +1,27 @@
+//authored by: JR Hauser
 import { Injectable } from '@angular/core';
-import { equalTo, get, getDatabase, orderByKey, query, ref, set } from 'firebase/database';
+import {
+  equalTo,
+  get,
+  getDatabase,
+  orderByKey,
+  query,
+  ref,
+  set,
+} from 'firebase/database';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GetBalanceService {
   // Get database from firebase
   db = getDatabase();
   uid = 0;
   // Get UID from calling method
-  giveUid(uid: number){
+  giveUid(uid: number) {
     this.uid = uid;
-  } 
-  
+  }
+
   //Get balance from firebase
   async getBalance() {
     // balance references
@@ -26,7 +35,7 @@ export class GetBalanceService {
     const balance = Object.values(balanceObj)[0];
     return balance;
   }
-  
+
   async setBalance(newBalance: number) {
     // Update the balance witht the new balance
     set(ref(this.db, 'usersBalance/' + this.uid), {

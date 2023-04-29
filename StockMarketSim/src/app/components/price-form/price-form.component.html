@@ -46,7 +46,9 @@
     type="number"
     class="form-control col m-2"
     [(ngModel)]="qty"
+    onkeyup="if(value<0) value=0;"
     name="qty"
+    required
     aria-describedby="price-form"
     placeholder="ex. 1"
     min="0"
