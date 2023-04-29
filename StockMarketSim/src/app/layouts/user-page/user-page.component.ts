@@ -158,7 +158,7 @@ export class UserPageComponent {
           const newSellRef = push(transactionListRef);
           set(newSellRef, {
             uid: this.uid,
-            price: -this.stock[0].lastSalePrice,
+            price: -this.stock.price,
             symbol: this.symbol.toLowerCase().trim(),
             timestamp: Date.now(),
             qty: -this.qty,
@@ -170,10 +170,9 @@ export class UserPageComponent {
             ' shares of ' +
             this.symbol +
             ' for ' +
-            this.qty * this.stock[0].lastSalePrice;
+            this.qty * this.stock.price;
         }
       }
     });
-    window.location.reload();
   }
 }
