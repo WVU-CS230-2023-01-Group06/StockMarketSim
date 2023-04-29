@@ -16,6 +16,8 @@ import {
 } from 'firebase/database';
 import { GetBalanceService } from 'src/app/services/get-balance.service';
 import { TransactionListService } from 'src/app/services/transaction-list.service';
+import { enviornment } from 'src/enviornments/enviorment';
+import { HttpClient } from '@angular/common/http';
 
 //TODO: DISPLAY USER BALANCE, FIELDS FOR DISPLAYING DATA, DATABINDING TO DISPLAY DATA
 
@@ -31,6 +33,7 @@ export class UserPageComponent {
   total: number = 0;
   stockTotals = new Map();
   balance: number = 0;
+  cashBalance: number = 0;
   stock: any;
   uid: any;
   sellLabel = '';
@@ -39,7 +42,8 @@ export class UserPageComponent {
     private router: Router,
     private api: GetPriceService,
     private balanceDB: GetBalanceService,
-    private transactionDB: TransactionListService
+    private transactionDB: TransactionListService,
+    private http: HttpClient
   ) {}
   async ngOnInit() {
     const auth = getAuth();
@@ -49,19 +53,10 @@ export class UserPageComponent {
       if (user) {
         //get the user id
         this.uid = user.uid;
+        this.balanceDB.giveUid(this.uid);
         //ask the database for the balance of that user id
-        const balanceRef = query(
-          ref(db, 'usersBalance/'),
-          orderByKey(),
-          equalTo(user.uid)
-        );
-        await get(balanceRef).then((snapshot) => {
-          //this for each only runs once
-          snapshot.forEach((child) => {
-            //set users balance to the local balance
-            this.balance = child.val().balance;
-          });
-        });
+        this.balance = await this.balanceDB.getBalance();
+        this.cashBalance = this.balance;
         //ask the database for the transactions that match the user's id
         const transactionsRef = query(
           ref(db, 'transactions/'),
@@ -91,12 +86,19 @@ export class UserPageComponent {
           .catch((error) => console.error(error));
         //this took me forever to get an async loop but now it looks up the price for each stock in the map
         for await (let [key] of this.stockTotals) {
-          this.api.giveSymbol(key);
-          this.api.getPrice().subscribe((stock) => {
+          let url =
+            'https://cloud.iexapis.com/stable/tops/last?symbols=' +
+            key +
+            '&token=' +
+            //enviornent set api key
+            enviornment.PRICE_KEY;
+
+          let resp = this.http.get(url);
+          resp.subscribe((stock) => {
             //parse the response from IEX
-            let resp = JSON.parse(JSON.stringify(stock));
+            let price = JSON.parse(JSON.stringify(stock))[0].price;
             //add the response to the balance
-            this.balance += resp[0].lastSalePrice;
+            this.balance += price * this.stockTotals.get(key);
             //add to the balance and round to two decimals
             this.balance = Math.round(this.balance * 100) / 100;
           });
@@ -119,14 +121,20 @@ export class UserPageComponent {
       }
     });
     //give the trimmed lowercase symbol to the getpriceservice to retrive the price from the IEX api
-    this.api.giveSymbol(this.symbol.toLowerCase().trim());
-    this.api.getPrice().subscribe(async (stock) => {
+    let url =
+      'https://cloud.iexapis.com/stable/tops/last?symbols=' +
+      this.symbol.toLowerCase().trim() +
+      '&token=' +
+      //enviornent set api key
+      enviornment.PRICE_KEY;
+    let resp = this.http.get(url);
+    resp.subscribe(async (stock) => {
       //if the response is empty the stock wasn't found
       if (Object.keys(stock).length == 0) {
         this.sellLabel = 'STOCK NOT FOUND';
       } else {
         //parse the response to get the stock object
-        this.stock = JSON.parse(JSON.stringify(stock));
+        this.stock = JSON.parse(JSON.stringify(stock))[0];
         //if the stockTotals map doesn't have the symbol tell the user
         if (!this.stockTotals.has(this.symbol.toLowerCase().trim())) {
           this.sellLabel = "you don't own that stock";
@@ -141,7 +149,7 @@ export class UserPageComponent {
           // Wait for the balance and set it to the local balance
           let newBalance = await this.balanceDB.getBalance();
           //update balance
-          newBalance += this.stock[0].lastSalePrice * this.qty;
+          newBalance += this.stock.price * this.qty;
           //set new balance
           this.balanceDB.setBalance(newBalance);
 
@@ -166,5 +174,6 @@ export class UserPageComponent {
         }
       }
     });
+    window.location.reload();
   }
 }

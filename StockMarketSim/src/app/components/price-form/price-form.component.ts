@@ -6,6 +6,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { GetBalanceService } from 'src/app/services/get-balance.service';
 import { TransactionListService } from 'src/app/services/transaction-list.service';
+import { enviornment } from 'src/enviornments/enviorment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-price-form',
@@ -25,14 +27,20 @@ export class PriceFormComponent {
     private priceApi: GetPriceService,
     private router: Router,
     private balanceDB: GetBalanceService,
-    private transactionDB: TransactionListService
+    private transactionDB: TransactionListService,
+    private http: HttpClient
   ) {}
   // Called when the user clicks the qoute button
   onQuoteSubmit() {
-    //Give the symbol to the getprice service
-    this.priceApi.giveSymbol(this.symbol.toLowerCase().trim());
-    // Get the price from the getprice service
-    this.priceApi.getPrice().subscribe((stock) => {
+    let url =
+      'https://cloud.iexapis.com/stable/tops/last?symbols=' +
+      this.symbol +
+      '&token=' +
+      //enviornent set api key
+      enviornment.PRICE_KEY;
+
+    let resp = this.http.get(url);
+    resp.subscribe((stock) => {
       // Check the response exists
       if (Object.keys(stock).length == 0) {
         //It doesn't exist
@@ -41,10 +49,10 @@ export class PriceFormComponent {
         // It exists
         // take the json response turn it into a string and then turn that into a JS
         // object, store that object in this.stock
-        this.stock = JSON.parse(JSON.stringify(stock));
+        this.stock = JSON.parse(JSON.stringify(stock))[0];
         // print the price field from that object
         // (there is some abstraction there, email me if you have questions)
-        this.quoteLabel = 'Quote Price: ' + this.stock[0].lastSalePrice;
+        this.quoteLabel = 'Quote Price: ' + this.stock.price;
       }
     });
   }
@@ -62,31 +70,39 @@ export class PriceFormComponent {
       }
     });
     //get the price from the IEX API
-    this.priceApi.giveSymbol(this.symbol.toLowerCase().trim());
-    this.priceApi.getPrice().subscribe(async (stock) => {
-      //If the price API response is empty
+    let url =
+      'https://cloud.iexapis.com/stable/tops/last?symbols=aapl&token=' +
+      //enviornent set api key
+      enviornment.PRICE_KEY;
+
+    let price = this.http.get(url);
+    price.subscribe(async (stock) => {
+      // Check the response exists
       if (Object.keys(stock).length == 0) {
-        this.priceLabel = 'STOCK NOT FOUND';
-      } // the response exists
-      else {
+        //It doesn't exist
+        this.quoteLabel = 'STOCK NOT FOUND';
+      } else {
+        // It exists
+        // take the json response turn it into a string and then turn that into a JS
+        // object, store that object in this.stock
+        this.stock = JSON.parse(JSON.stringify(stock))[0];
+        // print the price field from that object
+        // (there is some abstraction there, email me if you have questions)
         // Tell the balance service which user to look for
         this.balanceDB.giveUid(this.uid);
         // Wait for the balance and set it to the local balance
         this.balance = await this.balanceDB.getBalance();
-        // Parse the stock's price
-        this.stock = JSON.parse(JSON.stringify(stock));
         // If the stock * qty is more than the balance
-        if (this.stock[0].lastSalePrice * this.qty > this.balance) {
+        if (this.stock.price * this.qty > this.balance) {
           this.priceLabel = 'Not enough money';
         } else {
           // otherwise set new balance
-          var newBalance =
-            this.balance - this.stock[0].lastSalePrice * this.qty;
+          var newBalance = this.balance - this.stock.price * this.qty;
           this.balanceDB.setBalance(newBalance);
           // Create new transaction in the database
           this.transactionDB.giveInfo(
             this.uid,
-            this.stock[0].lastSalePrice,
+            this.stock.price,
             this.symbol.toLowerCase().trim(),
             Date.now(),
             this.qty
@@ -98,7 +114,7 @@ export class PriceFormComponent {
             ' shares of ' +
             this.symbol +
             ' for ' +
-            this.qty * this.stock[0].lastSalePrice;
+            this.qty * this.stock.price;
         }
       }
     });

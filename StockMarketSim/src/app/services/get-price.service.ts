@@ -20,13 +20,14 @@ export class GetPriceService {
   //get the lastSale price from the IEX cloud legacy API  https://iexcloud.io/docs/api/#quote returns the JSON object from the response
   getPrice() {
     let url =
-      'https://cloud.iexapis.com/stable/tops?token=' +
+      'https://cloud.iexapis.com/stable/tops/last?symbols=aapl&token=' +
       //enviornent set api key
-      enviornment.PRICE_KEY +
-      '&symbols=' +
-      this.symbol;
+      enviornment.PRICE_KEY;
     // return the object response from the API call
     let price = this.http.get(url);
+    price.subscribe((stock) => {
+      console.log(stock);
+    });
     return price;
   }
 }
