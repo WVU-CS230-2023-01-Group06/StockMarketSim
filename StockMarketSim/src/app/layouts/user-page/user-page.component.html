@@ -1,7 +1,7 @@
 <p>USER PAGE STUB/ Portfolio Page</p>
 total value: {{ balance }} cash balance: {{ cashBalance }}
 <div class="card" style="width: 18rem; float: right">
-  <img src="https://picsum.photos/1000/1000" />
+  <img src="assets/investing stock market.jpg" class="d-block w-1000" />
   <div class="card-body">
     <p class="card-text">
       These are the investment trends of stock you have purchased
@@ -9,30 +9,12 @@ total value: {{ balance }} cash balance: {{ cashBalance }}
   </div>
 </div>
 
-<form
-  class="row row-lg-auto w-75 text-center mx-auto mt-3"
-  #buyForm="ngForm"
-  (ngSubmit)="onSellSubmit()"
->
+<form class="row row-lg-auto w-75 text-center mx-auto mt-3" #buyForm="ngForm" (ngSubmit)="onSellSubmit()">
   <label for="sell" class="form-label text-end col">Stock Symbol:</label>
-  <input
-    type="text"
-    class="form-control col"
-    aria-describedby="sell-form"
-    name="symbol"
-    [(ngModel)]="symbol"
-    placeholder="ex. AAPL"
-  />
-  <input
-    type="number"
-    class="form-control col"
-    [(ngModel)]="qty"
-    name="qty"
-    aria-describedby="sell-form"
-    placeholder="ex. 1"
-    min="0"
-    onkeyup="if(value<0) value=0;"
-  />
+  <input type="text" class="form-control col" aria-describedby="sell-form" name="symbol" [(ngModel)]="symbol"
+    placeholder="ex. AAPL" />
+  <input type="number" class="form-control col" [(ngModel)]="qty" name="qty" aria-describedby="sell-form"
+    placeholder="ex. 1" min="0" onkeyup="if(value<0) value=0;" />
   <button type="submit" class="btn btn-primary col">Sell</button>
 </form>
 <div class="text-center">{{ sellLabel }}</div>
