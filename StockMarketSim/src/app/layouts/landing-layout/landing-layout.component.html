@@ -2,14 +2,14 @@
 <p class = "description">Thank you for visiting Stock Market Sim to view trends of stock buys in real time with your own simulated balance!</p>
 <div class="row">
 <p class = "Header Text">Check out your
-<a class="nav-link" style="text-decoration: underline;" routerLink="UserPage">stocks progress</a>
+<a style="text-decoration: underline; color: red;" routerLink="UserPage">stocks progress</a>
 </p>
 </div>
 <br />
 
 <h3 style= "padding-bottom: 20px;">Top Stock Headlines</h3>
 
-<div class = "d-flex flex-wrap">
+<div class = "d-flex flex-wrap justify-content-center">
 <div *ngFor="let post of news.articles">
 <div class="card" style="width: 300px;">
     <div class="card-body">
