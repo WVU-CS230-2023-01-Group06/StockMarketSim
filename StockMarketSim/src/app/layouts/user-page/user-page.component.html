@@ -1,14 +1,5 @@
-<h6>Portfolio</h6>
+<h6>Your Portfolio</h6>
 <p class = "description">View Your Data Trends and Sell Any Stocks</p>
-
-<div class="card" style="width: 18rem; float: right">
-  <img src="assets/investing stock market.jpg" class="d-block w-1000" />
-  <div class="card-body">
-    <p class="card-text">
-      These are the investment trends of stock you have purchased
-    </p>
-  </div>
-</div>
 
 <form class="row row-lg-auto w-75 text-center mx-auto mt-3" #buyForm="ngForm" (ngSubmit)="onSellSubmit()">
   <label for="sell" class="form-label text-end col">Stock Symbol:</label>
@@ -22,4 +13,15 @@
 
 <br> 
 
-<div class="d-flex justify-content-center">Total Value: {{ balance }} Cash Balance: {{ cashBalance }}</div>
+<div class="d-flex justify-content-center"><p style="color: red;">Total Value: {{ balance }} </p>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <p style="color: rgb(126, 205, 8)">Cash Balance: {{ cashBalance }}</p></div>
+
+  <div class="card" style="width: 18rem; float: right">
+    <img src="assets/investing stock market.jpg" class="d-block w-1000" />
+    <div class="card-body">
+      <p class="card-text">
+        These are the investment trends of stock you have purchased
+      </p>
+    </div>
+  </div>
