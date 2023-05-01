@@ -1,6 +1,6 @@
 # 📈 StockMarketSim
 Group project for WVU CS230.
-StockMarketSim focuses on being able to create an account that can simulate buying stocks with your own account starting balance that fluctuates as stocks would in the real market. 
+StockMarketSim focuses on being able to create an account that can simulate buying stocks with your own account starting balance that fluctuates as stocks would in the real market after stock purchases and sales. 
 ## Motivation
 This Web App provides experience for users who want to venture into making calls in the stock market by first using our application to see how they would first approach the market. Instead of making real time bad calls while the stock market is at different stages, our users are able to gain more insight on what are the best times to invest on certain stocks.
 ## Moving Around our Page
