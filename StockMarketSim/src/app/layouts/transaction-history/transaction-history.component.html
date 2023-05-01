@@ -1,6 +1,9 @@
+<!-- The basic structure of the transaction history component. -->
+<!-- Displays the current user's balance. -->
 <div class="card m-2 px-2 text-center" style="width: 15rem;">
     <p class="card-text">Account Balance: {{userBalance}}</p>
 </div>
+<!-- Displays a table containing the user's previous transactions. -->
 <table class="table m-2 text-center">
     <thead>
         <tr>
@@ -16,7 +19,7 @@
         <tr>
             <th scope="row">{{i + 1}}</th>
             <td>{{item.priceToString}}</td>
-            <td>{{item.qty}}</td>
+            <td>{{item.quantity}}</td>
             <td>{{item.symbol}}</td>
             <td>{{item.totalToString}}</td>
             <td>{{item.date}}</td>

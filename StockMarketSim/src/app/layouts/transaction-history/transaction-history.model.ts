@@ -1,24 +1,48 @@
+/**
+ * Represents a row in the transaction history table.
+ */
 export class TransactionHistoryModel {
     price: number = 0;
-    qty: number = 0;
+    quantity: number = 0;
     total: number = 0;
     symbol: string = "STOCK";
     date: string = "NOW";
 
-    constructor(price: number, qty: number, symbol: string, timestamp: number) {
+    /**
+     * Creates a new instance of the row.
+     *
+     * @param price - The price of the stock at the time of the transaction.
+     * @param quantity - The amount of a stock that was bought or sold.
+     * @param symbol - The symbol of the stock.
+     * @param timestamp - The number of seconds after the Unix Epoch when the
+     * transaction occurred.
+     */
+    constructor(price: number, quantity: number, symbol: string, timestamp: number) {
         this.price = Math.abs(price);
-        this.qty = qty;
+        this.quantity = quantity;
         this.symbol = symbol.toUpperCase();
+        // Converts the timestamp into a human-readable date.
         this.date = new Date(timestamp).toLocaleString();
-        this.total = price * qty;
+        // Calculates the total amount of money that was paid or received.
+        this.total = -(price * quantity);
     }
 
+    /**
+     * Converts the transaction's price as a string in US dollars.
+     *
+     * @returns This transaction's price formatted in US dollars.
+     */
     get priceToString() {
         return this.price.toLocaleString(undefined, {
             style: "currency", currency: "USD"
         });
     }
 
+    /**
+     * Converts the transaction's total as a string in US dollars.
+     *
+     * @returns This transaction's total formatted in US dollars.
+     */
     get totalToString() {
         return this.total.toLocaleString(undefined, {
             style: "currency", currency: "USD"
