@@ -8,7 +8,7 @@ export const firebaseConfig = {
   appId: '1:187291973959:web:0d6bf9742f0ccb15c03462',
   measurementId: 'G-MRV9DB7SHY',
 };
-export const enviornment = {
+export const environment = {
   production: true,
   //key for the IEX API
   PRICE_KEY: 'pk_554abea8d34b4ec89301ea9beb841c6b',

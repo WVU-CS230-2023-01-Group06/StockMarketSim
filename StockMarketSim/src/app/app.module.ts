@@ -17,7 +17,7 @@ import { NewsApiService } from './services/news-api.service';
 import { StockSearchLayoutComponent } from './layouts/stock-search-layout/stock-search-layout.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
-import { firebaseConfig } from 'src/enviornments/enviorment';
+import { firebaseConfig } from 'src/environments/environment';
 
 @NgModule({
   declarations: [

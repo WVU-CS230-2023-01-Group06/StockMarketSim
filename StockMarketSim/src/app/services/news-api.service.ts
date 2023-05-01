@@ -6,7 +6,7 @@
 */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { enviornment } from 'src/enviornments/enviorment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class NewsApiService {
 
   constructor(private http:HttpClient) { }
   
-  newsURL = "https://newsapi.org/v2/top-headlines?q=stock+market&apiKey=" + enviornment.NEWS_KEY;
+  newsURL = "https://newsapi.org/v2/top-headlines?q=stock+market&apiKey=" + environment.NEWS_KEY;
 
   /*
   * @return JSON formatted Article Info from newsURL

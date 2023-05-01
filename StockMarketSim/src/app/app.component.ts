@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
-import { firebaseConfig } from 'src/enviornments/enviorment';
+import { firebaseConfig } from 'src/environments/environment';
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);

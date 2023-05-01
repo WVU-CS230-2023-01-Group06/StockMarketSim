@@ -15,7 +15,7 @@ import {
 } from 'firebase/database';
 import { GetBalanceService } from 'src/app/services/get-balance.service';
 import { TransactionListService } from 'src/app/services/transaction-list.service';
-import { enviornment } from 'src/enviornments/enviorment';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 //TODO: DISPLAY USER BALANCE, FIELDS FOR DISPLAYING DATA, DATABINDING TO DISPLAY DATA
@@ -92,7 +92,7 @@ export class UserPageComponent {
             key +
             '&token=' +
             //enviornent set api key
-            enviornment.PRICE_KEY;
+            environment.PRICE_KEY;
 
           let resp = this.http.get(url);
           resp.subscribe((stock) => {
@@ -127,7 +127,7 @@ export class UserPageComponent {
       this.symbol.toLowerCase().trim() +
       '&token=' +
       //enviornent set api key
-      enviornment.PRICE_KEY;
+      environment.PRICE_KEY;
     let resp = this.http.get(url);
     resp.subscribe(async (stock) => {
       //if the response is empty the stock wasn't found

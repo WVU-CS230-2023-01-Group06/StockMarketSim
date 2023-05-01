@@ -5,7 +5,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { GetBalanceService } from 'src/app/services/get-balance.service';
 import { TransactionListService } from 'src/app/services/transaction-list.service';
-import { enviornment } from 'src/enviornments/enviorment';
+import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 //get-price.service.ts stopped working for some reason so I have hard coded the calls
@@ -38,7 +38,7 @@ export class PriceFormComponent {
       this.symbol +
       '&token=' +
       //enviornent set api key
-      enviornment.PRICE_KEY;
+      environment.PRICE_KEY;
 
     let resp = this.http.get(url);
     resp.subscribe((stock) => {
@@ -74,7 +74,7 @@ export class PriceFormComponent {
     let url =
       'https://cloud.iexapis.com/stable/tops/last?symbols=aapl&token=' +
       //enviornent set api key
-      enviornment.PRICE_KEY;
+      environment.PRICE_KEY;
 
     let price = this.http.get(url);
     price.subscribe(async (stock) => {
