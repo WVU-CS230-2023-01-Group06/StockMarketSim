@@ -72,7 +72,9 @@ export class PriceFormComponent {
     });
     //get the price from the IEX API
     let url =
-      'https://cloud.iexapis.com/stable/tops/last?symbols=aapl&token=' +
+      'https://cloud.iexapis.com/stable/tops/last?symbols=' +
+      this.symbol.toLowerCase().trim() +
+      '&token=' +
       //enviornent set api key
       enviornment.PRICE_KEY;
 
