@@ -57,7 +57,7 @@ export class UserPageComponent {
         this.balanceDB.giveUid(this.uid);
         //ask the database for the balance of that user id
         this.balance = await this.balanceDB.getBalance();
-        this.cashBalance =  Math.round(this.balance * 10) / 100;
+        this.cashBalance =  Math.round(this.balance * 100) / 100;
         //ask the database for the transactions that match the user's id
         const transactionsRef = query(
           ref(db, 'transactions/'),
