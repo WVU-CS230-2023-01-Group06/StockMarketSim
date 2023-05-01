@@ -1,5 +1,8 @@
-<!-- TODO: FIX STYLING, GENERALLY MAKE PRETTIER -->
+<!--Authored by J.R. Hauser-->
 
+<!-- Form for stock qoutes:
+       uses the ngForm module, on the submit it calls onQouteSumbit() from the price-form.ts file
+                      the short version is it returns the price of the stock and sets the below qouteLabel    -->
 <form
   #quoteForm="ngForm"
   (ngSubmit)="onQuoteSubmit()"
@@ -8,6 +11,8 @@
   <label for="qoute" class="form-label mt-2 text-end col fs-5"
     >Stock Symbol:</label
   >
+  <!-- the input for the qoute form symbol,its attached to the
+        symbol field of the price-form.component-->
   <input
     type="text"
     class="form-control col m-2"
@@ -24,6 +29,7 @@
     Get Quote
   </button>
 </form>
+<!--this is where the qoute is displayed-->
 <div class="text-center fs-5 m-1">{{ quoteLabel }}</div>
 
 <form
@@ -34,6 +40,8 @@
   <label for="buy" class="form-label text-end col fs-5 mt-2"
     >Stock Symbol:</label
   >
+  <!-- the input for the buy form symbol,its attached to the
+        symbol field of the price-form.component-->
   <input
     type="text"
     class="form-control col m-2"
@@ -42,6 +50,9 @@
     [(ngModel)]="symbol"
     placeholder="ex. AAPL"
   />
+  <!-- the input for the buy form qty, the okKeyup() function prevents a user 
+        from inputting a negative value; its attached to the
+        qty field of the price-form.component-->
   <input
     type="number"
     class="form-control col m-2"
@@ -61,4 +72,5 @@
     Buy
   </button>
 </form>
+<!--this is where the symbol and qty is displayed-->
 <div class="text-center fs-5 m-3">{{ priceLabel }}</div>

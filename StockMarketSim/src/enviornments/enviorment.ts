@@ -10,6 +10,7 @@ export const firebaseConfig = {
 };
 export const enviornment = {
   production: true,
-  PRICE_KEY: "pk_554abea8d34b4ec89301ea9beb841c6b",
-  NEWS_KEY: "dd9654776c714e2ea68fd176b568208e"
-}
+  //key for the IEX API
+  PRICE_KEY: 'pk_554abea8d34b4ec89301ea9beb841c6b',
+  NEWS_KEY: 'dd9654776c714e2ea68fd176b568208e',
+};

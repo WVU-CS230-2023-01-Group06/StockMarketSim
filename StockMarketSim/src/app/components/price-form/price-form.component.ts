@@ -1,13 +1,15 @@
 // Authored by J.R. Hauser
 
 import { Component } from '@angular/core';
-import { GetPriceService } from '../../services/get-price.service';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { Router } from '@angular/router';
 import { GetBalanceService } from 'src/app/services/get-balance.service';
 import { TransactionListService } from 'src/app/services/transaction-list.service';
 import { enviornment } from 'src/enviornments/enviorment';
 import { HttpClient } from '@angular/common/http';
+
+//get-price.service.ts stopped working for some reason so I have hard coded the calls
+// in the individual components this is not good code
 
 @Component({
   selector: 'app-price-form',
@@ -24,7 +26,6 @@ export class PriceFormComponent {
   uid: any;
   balance = 0;
   constructor(
-    private priceApi: GetPriceService,
     private router: Router,
     private balanceDB: GetBalanceService,
     private transactionDB: TransactionListService,

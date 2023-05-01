@@ -2,7 +2,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { GetPriceService } from 'src/app/services/get-price.service';
 import {
   equalTo,
   get,
@@ -20,6 +19,9 @@ import { enviornment } from 'src/enviornments/enviorment';
 import { HttpClient } from '@angular/common/http';
 
 //TODO: DISPLAY USER BALANCE, FIELDS FOR DISPLAYING DATA, DATABINDING TO DISPLAY DATA
+
+//get-price.service.ts stopped working for some reason so I have hard coded the calls
+// in the individual components this is not good code
 
 @Component({
   selector: 'app-user-page',
@@ -40,7 +42,6 @@ export class UserPageComponent {
 
   constructor(
     private router: Router,
-    private api: GetPriceService,
     private balanceDB: GetBalanceService,
     private transactionDB: TransactionListService,
     private http: HttpClient
