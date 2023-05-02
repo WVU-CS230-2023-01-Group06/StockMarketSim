@@ -1,5 +1,5 @@
 // Authored by J.R. Hauser
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {
@@ -17,6 +17,7 @@ import { GetBalanceService } from 'src/app/services/get-balance.service';
 import { TransactionListService } from 'src/app/services/transaction-list.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { PortfolioHistoryModel } from './user-page.model';
 
 //TODO: DISPLAY USER BALANCE, FIELDS FOR DISPLAYING DATA, DATABINDING TO DISPLAY DATA
 
@@ -28,7 +29,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.css'],
 })
-export class UserPageComponent {
+export class UserPageComponent implements OnInit{
   //initialize variables for displaying data
   symbol = '';
   qty = 0;
@@ -39,13 +40,26 @@ export class UserPageComponent {
   stock: any;
   uid: any;
   sellLabel = '';
+ 
+  transactionTableRows: PortfolioHistoryModel[] = [];
+  quantity: number;
+  price: number;
+  symbol01: string;
+
 
   constructor(
     private router: Router,
     private balanceDB: GetBalanceService,
     private transactionDB: TransactionListService,
     private http: HttpClient
-  ) {}
+) 
+{
+  this.price = 0.00;
+  this.quantity = 0;
+  this.symbol01 = "STOCK";
+  
+
+}
   async ngOnInit() {
     const auth = getAuth();
     const db = getDatabase();
