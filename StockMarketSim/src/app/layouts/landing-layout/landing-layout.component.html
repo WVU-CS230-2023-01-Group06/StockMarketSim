@@ -1,3 +1,7 @@
+<!-- @author: Kiara Neira 
+    Html File to display information to Home Page from NEWS API service and component.ts 
+    Latest Updates to Styling: 5/1/23 by Piolo-Anjelo Pascual -->
+    
 <h6>Welcome!</h6>
 <p class="description">Thank you for visiting Stock Market Sim to view trends of stock buys in real time with your own
   simulated balance!</p>
@@ -10,6 +14,8 @@
 
 <h3 style="padding-bottom: 20px;">Top Stock Headlines</h3>
 
+<!-- ngFor loop to display News Article Featuures
+      taken from News API Service and variable call from landing-layout.component.ts-->
 <div class="d-flex flex-wrap justify-content-center">
   <div *ngFor="let post of news.articles">
     <div class="card" style="width: 300px;">
