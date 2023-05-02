@@ -1,6 +1,18 @@
+<!--
+  Authored by Krishna Foster
+
+  Html file that displays tips for new users to get started on the website and imports the buy/sell carousel components to presents visual steps 
+-->
+
+<!--
+  Presents a header for the user to know what page they are on 
+-->
 <h4>Tutorial and Tips</h4>
 <p class = "description">Tips for Buying Stocks and Moving Throughout Our Page</p>
 
+<!--
+  displays the user some tips to inform them about knowledge they may not know
+  -->
 <div class="container-fluid">
   <div class="container">
     <br>
@@ -9,7 +21,7 @@
     <br>
     <h6>Tip 2: The best time to buy stocks are around 9:30 a.m. to 10:30 a.m.(ET)</h6>
     <br>
-    <h6>Tip 3: Prepare for long term investments. Do not let your feelings cloud your judgement in stock management.</h6>
+    <h6>Tip 3: Prepare for long term investments. Do not let your feelings cloud your judgment in stock management.</h6>
     <br>
     <h6>Tip 4: Look at the history of trends of the stock but dont rely on that alone as this doesn't always help
       predict the future of the stock</h6>
@@ -20,16 +32,30 @@
   </div>
 
   <h4>How to Traverse our Website</h4>
+
+  <!--
+    displays a carousel that demonstrates how to the user how to purchase stocks and traverse through the website
+  -->
   <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 center ">
     <div class="bd-example">
       <div id="firstCarouselExampleControls" class="carousel slide" data-ride="carousel">
         <p>How to Buy Stocks on our Page</p>
+        <!--
+          calls for the buy carousel component which imports the information for the slides on the carousel
+        -->
         <app-buy-carousel>Loading...</app-buy-carousel>
       </div>
     </div>
+
+    <!--
+    displays a carousel that demonstrates how to sell stocks the user owns and traverse through the website
+  -->
     <div class="bd-example">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <p>How to Sell Stocks on our Page</p>
+        <!--
+          calls for the sell carousel component which imports the information for the slides on the carousel
+        -->
         <app-sell-carousel>Loading...</app-sell-carousel>
       </div>
     </div>

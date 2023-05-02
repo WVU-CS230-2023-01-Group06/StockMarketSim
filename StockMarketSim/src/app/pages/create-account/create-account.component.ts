@@ -21,7 +21,7 @@ export class CreateAccountComponent {
     if (this.password == '') {
       alert('please enter password');
     }
-    //use the createAccount method of the auth service pasisng in the given email and password
+    //use the createAccount method of the auth service passing in the given email and password
     this.auth.createAccount(this.email, this.password);
   }
 }
