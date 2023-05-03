@@ -12,30 +12,25 @@
 <div class="text-center">{{ sellLabel }}</div>
 
 <br> 
-
-<div class="d-flex justify-content-center"><p style="color: red;">Total Value: {{ balance }} </p>
+<div style="background-color: #cfc ; padding: 1px; border: 1px solid rgb(0, 59, 0);">
+<div class="d-flex justify-content-center"><p style="color: rgb(0, 0, 0);">Total Value: {{ balance }} </p>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <p style="color: rgb(126, 205, 8)">Cash Balance: {{ cashBalance }}</p></div>
+  <p style="color: rgb(0, 0, 0)">Cash Balance: {{ cashBalance }}</p></div>
+</div>
 
 
   <table class="table m-2 text-center">
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Symbol</th>
             <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Total</th>
         </tr>
     </thead>
    
-    <tbody *ngFor="let item of transactionTableRows; index as i">
+    <tbody *ngFor="let item of stockTotals | keyvalue">
         <tr>
-            <th scope="row">{{i + 1}}</th>
-            <td>{{item.priceToString}}</td>
-            <td>{{item.quantity}}</td>
-            <td>{{item.symbol}}</td>
-            <td>{{item.totalToString}}</td>
+            <th>{{item.key}}</th>
+            <th> {{item.value}}</th>
         </tr>
     </tbody>  
     

@@ -41,7 +41,6 @@ export class UserPageComponent implements OnInit{
   uid: any;
   sellLabel = '';
  
-  transactionTableRows: PortfolioHistoryModel[] = [];
   quantity: number;
   price: number;
   symbol01: string;
@@ -108,6 +107,7 @@ export class UserPageComponent implements OnInit{
             //enviornent set api key
             environment.PRICE_KEY;
 
+          
           let resp = this.http.get(url);
           resp.subscribe((stock) => {
             //parse the response from IEX
@@ -116,6 +116,7 @@ export class UserPageComponent implements OnInit{
             this.balance += price * this.stockTotals.get(key);
             //add to the balance and round to two decimals
             this.balance = Math.round(this.balance * 100) / 100;
+            console.log(this.stockTotals);
           });
         }
       } else {
