@@ -3,7 +3,8 @@ input{
 }
 
 button{
-    background-color: rgba(10, 10, 87, 0.831);
+    background-color: rgb(10, 192, 55);
+    border-color: black;
 }
 
 img{
