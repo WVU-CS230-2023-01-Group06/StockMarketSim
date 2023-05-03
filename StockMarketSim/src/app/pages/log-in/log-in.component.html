@@ -1,8 +1,15 @@
-<!--TODO: IMPROVE STYLING-->
+<!--Some basic aligment issues were fixed. Added logo on top. Last edit made by Jay Bhardwaj on 05/02/2023-->
+
+<a class="navbar-brand" href="Homepage" style="display: flex; align-items: center; font-size: 22px;">
+  <img src="https://th.bing.com/th/id/OIP.puwsv-VMA1yJ6ao0pGPa2wHaFD?pid=ImgDet&w=820&h=560&rs=1" width="50" height="50" style="border-radius: 60px" class="d-inline-block align-top" alt="">
+  StockMarketSim
+</a>
 
 <h1>Sign in or create an account</h1>
 
-<form
+<body>
+
+<form id = "box"
   style="margin: auto; width: 40%; padding: 10px"
   #loginForm="ngForm"
   (ngSubmit)="login()"
@@ -43,4 +50,7 @@
     </button>
   </div>
 </form>
+
+</body>
+
 <br />
